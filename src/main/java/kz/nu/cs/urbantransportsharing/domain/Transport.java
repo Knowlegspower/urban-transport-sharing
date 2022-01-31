@@ -1,0 +1,46 @@
+package kz.nu.cs.urbantransportsharing.domain;
+
+import kz.nu.cs.urbantransportsharing.domain.base.BaseEntity;
+import kz.nu.cs.urbantransportsharing.util.StringListConverter;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "transport")
+@Data
+public class Transport extends BaseEntity<Long> {
+    @Column
+    private Boolean isCar;
+
+    @Column
+    private String model;
+
+    @Column
+    private String brand;
+
+    @Column
+    private Integer productYear;
+
+    @Column
+    private String color;
+
+    @Column
+    private String needRepair;
+
+    @Column(columnDefinition="TEXT")
+    @Convert(converter = StringListConverter.class)
+    private List<String> images;
+
+    @Column
+    private String coordinate;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    private Car car;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "scooter_id", referencedColumnName = "id")
+    private Scooter scooter;
+}
