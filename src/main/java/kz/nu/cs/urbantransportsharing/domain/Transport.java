@@ -20,6 +20,9 @@ public class Transport extends BaseEntity<Long> {
     @Column
     private String brand;
 
+    @Column(name = "is_removed", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isRemoved = false;
+
     @Column
     private Integer productYear;
 

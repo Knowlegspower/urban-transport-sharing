@@ -2,11 +2,15 @@ package kz.nu.cs.urbantransportsharing.web.dto;
 
 import io.swagger.annotations.ApiModel;
 import kz.nu.cs.urbantransportsharing.domain.Transport;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ApiModel(value = "TransportDto", description = "Model for transport entity")
 public class TransportDto {
     private Long id;
