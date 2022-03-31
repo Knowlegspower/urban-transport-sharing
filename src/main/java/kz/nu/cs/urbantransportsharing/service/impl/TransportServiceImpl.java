@@ -20,7 +20,8 @@ public class TransportServiceImpl implements TransportService{
 
     @Override
     public List<TransportDto> getAll() {
-        return transportRepository.findAll().stream().filter(transport -> transport.getIsRemoved().equals(Boolean.FALSE))
+        return transportRepository.findAll().stream()
+                .filter(transport -> transport.getIsRemoved().equals(Boolean.FALSE) && transport.getIsReserved().equals(Boolean.FALSE))
                 .map(TransportDto::new).collect(Collectors.toList());
     }
 
@@ -49,6 +50,23 @@ public class TransportServiceImpl implements TransportService{
         optionalTransport.get().setIsRemoved(Boolean.TRUE);
         transportRepository.save(optionalTransport.get());
         return "true";
+    }
+
+    @Override
+    public String reserveTransport(Long id) {
+        Optional<Transport> optionalTransport = transportRepository.findById(id);
+        if (!optionalTransport.isPresent()) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
+        if (optionalTransport.get().getIsReserved()) {
+            optionalTransport.get().setIsReserved(Boolean.FALSE);
+        } else {
+            optionalTransport.get().setIsReserved(Boolean.TRUE);
+        }
+        transportRepository.save(optionalTransport.get());
+        return "OK";
     }
 
 }

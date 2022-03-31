@@ -10,4 +10,6 @@ public interface TransportService {
     String moveTransport(TransportDto dto);
 
     String deleteTransport(Long id);
+
+    String reserveTransport(Long id);
 }

@@ -23,6 +23,9 @@ public class Transport extends BaseEntity<Long> {
     @Column(name = "is_removed", nullable = false, columnDefinition = "boolean default false")
     private Boolean isRemoved = false;
 
+    @Column(name = "is_reserved", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isReserved = false;
+
     @Column
     private Integer productYear;
 

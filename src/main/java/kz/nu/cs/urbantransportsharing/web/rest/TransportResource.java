@@ -33,4 +33,10 @@ public class TransportResource {
     public ResponseEntity<String> deleteTransport(@PathVariable("id")  Long id) {
         return new ResponseEntity<>(transportService.deleteTransport(id), HttpStatus.OK);
     }
+
+    @PutMapping("/reserve/{id}")
+    @ApiOperation(value = "Reserve the transport")
+    public ResponseEntity<String> reserveTransport(@PathVariable("id")  Long id) {
+        return new ResponseEntity<>(transportService.reserveTransport(id), HttpStatus.OK);
+    }
 }
