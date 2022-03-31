@@ -37,7 +37,10 @@ public class Transport extends BaseEntity<Long> {
     private List<String> images;
 
     @Column
-    private String coordinate;
+    private String latitude;
+
+    @Column
+    private String longitude;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id", referencedColumnName = "id")

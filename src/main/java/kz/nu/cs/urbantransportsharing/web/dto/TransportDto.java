@@ -29,7 +29,9 @@ public class TransportDto {
 
     private List<String> images;
 
-    private String coordinate;
+    private String latitude;
+
+    private String longitude;
 
     private CarDto carDto;
 
@@ -44,7 +46,8 @@ public class TransportDto {
         this.color = transport.getColor();
         this.needRepair = transport.getNeedRepair();
         this.images = transport.getImages();
-        this.coordinate = transport.getCoordinate();
+        this.longitude = transport.getLongitude();
+        this.latitude = transport.getLatitude();
         if (transport.getIsCar()) {
             this.carDto = new CarDto(transport.getCar());
         } else {

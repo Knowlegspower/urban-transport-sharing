@@ -32,9 +32,10 @@ public class TransportServiceImpl implements TransportService{
                     HttpStatus.NOT_FOUND, "entity not found"
             );
         }
-        optionalTransport.get().setCoordinate(dto.getCoordinate());
+        optionalTransport.get().setLatitude(dto.getLatitude());
+        optionalTransport.get().setLongitude(dto.getLongitude());
         transportRepository.save(optionalTransport.get());
-        return dto.getCoordinate();
+        return "OK";
     }
 
     @Override
