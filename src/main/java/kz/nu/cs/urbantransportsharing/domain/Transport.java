@@ -11,8 +11,9 @@ import java.util.List;
 @Table(name = "transport")
 @Data
 public class Transport extends BaseEntity<Long> {
+
     @Column
-    private Boolean isCar;
+    private Integer type;
 
     @Column
     private String model;

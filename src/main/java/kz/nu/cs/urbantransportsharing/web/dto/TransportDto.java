@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import java.util.List;
 public class TransportDto {
     private Long id;
 
-    private Boolean isCar;
+    private Integer type;
 
     private String model;
 
@@ -39,7 +41,7 @@ public class TransportDto {
 
     public TransportDto(Transport transport) {
         this.id = transport.getId();
-        this.isCar = transport.getIsCar();
+        this.type = transport.getType();
         this.model = transport.getModel();
         this.brand = transport.getBrand();
         this.productYear = transport.getProductYear();
@@ -48,10 +50,17 @@ public class TransportDto {
         this.images = transport.getImages();
         this.longitude = transport.getLongitude();
         this.latitude = transport.getLatitude();
-        if (transport.getIsCar()) {
-            this.carDto = new CarDto(transport.getCar());
-        } else {
-            this.scooterDto = new ScooterDto(transport.getScooter());
+        if (!isNull(transport.getType()) ){
+            switch (transport.getType()) {
+                case 1:
+                    this.scooterDto = new ScooterDto(transport.getScooter());
+                    break;
+                case 2:
+                    this.carDto = new CarDto(transport.getCar());
+                    break;
+                case 3:
+                    break;
+            }
         }
     }
 }
